@@ -13,8 +13,8 @@ Public Class MyUnitOperation
 
 #Region "Unit Operation Information"
 
-    Private Property UOName As String = "Humidifier"
-    Private Property UODescription As String = "Humidifier Unit Operation"
+    Private Property UOName As String = "User-Defined Template"
+    Private Property UODescription As String = "User-Defined Template Unit Operation"
 
     Public ReadOnly Property Prefix As String Implements Interfaces.IExternalUnitOperation.Prefix
         Get
@@ -22,7 +22,7 @@ Public Class MyUnitOperation
         End Get
     End Property
 
-    Public Overrides Property ObjectClass As SimulationObjectClass = SimulationObjectClass.MixersSplitters
+    Public Overrides Property ObjectClass As SimulationObjectClass = SimulationObjectClass.UserModels
 
     Public Overrides Function GetDisplayName() As String
         Return UOName
@@ -93,6 +93,8 @@ Public Class MyUnitOperation
         Dim outletstream = GetOutletMaterialStream(0)
 
         Dim energystream As EnergyStream = GetOutletEnergyStream(1)
+
+
 
         If gas_stream Is Nothing Then
             Throw New Exception("No stream connected to inlet gas port")
@@ -296,50 +298,52 @@ Public Class MyUnitOperation
 
 #Region "Classic UI and Cross-Platform UI Editor Support"
 
+    <Xml.Serialization.XmlIgnore> Public editwindow As Editor
+
     'display the editor on the classic user interface
     Public Overrides Sub DisplayEditForm()
 
-        'If editwindow Is Nothing Then
+        If editwindow Is Nothing Then
 
-        '    editwindow = New Editor() With {.HObject = Me}
+            editwindow = New Editor() With {.SimObject = Me}
 
-        'Else
+        Else
 
-        '    If editwindow.IsDisposed Then
-        '        editwindow = New Editor() With {.HObject = Me}
-        '    End If
+            If editwindow.IsDisposed Then
+                editwindow = New Editor() With {.SimObject = Me}
+            End If
 
-        'End If
+        End If
 
-        'FlowSheet.DisplayForm(editwindow)
+        FlowSheet.DisplayForm(editwindow)
 
     End Sub
 
     'this updates the editor window on classic ui
     Public Overrides Sub UpdateEditForm()
 
-        'If editwindow IsNot Nothing Then
+        If editwindow IsNot Nothing Then
 
-        '    If editwindow.InvokeRequired Then
+            If editwindow.InvokeRequired Then
 
-        '        editwindow.Invoke(Sub()
-        '                              editwindow?.UpdateInfo()
-        '                          End Sub)
+                editwindow.Invoke(Sub()
+                                      editwindow?.UpdateInfo()
+                                  End Sub)
 
-        '    Else
+            Else
 
-        '        editwindow?.UpdateInfo()
+                editwindow?.UpdateInfo()
 
-        '    End If
+            End If
 
-        'End If
+        End If
 
     End Sub
 
     'this closes the editor on classic ui
     Public Overrides Sub CloseEditForm()
 
-        'editwindow?.Close()
+        editwindow?.Close()
 
     End Sub
 
