@@ -15,8 +15,8 @@ Public Class MyUnitOperation
 
 #Region "Unit Operation Information"
 
-    Private Property UOName As String = "User-Defined Template"
-    Private Property UODescription As String = "User-Defined Template Unit Operation"
+    Private Property UOName As String = "My Unit Operation"
+    Private Property UODescription As String = "My Unit Operation Description"
 
     Public ReadOnly Property Prefix As String Implements Interfaces.IExternalUnitOperation.Prefix
         Get
@@ -86,89 +86,48 @@ Public Class MyUnitOperation
 #End Region
 
 #Region "Calculation Routine"
+
     Public Overrides Sub Calculate(Optional args As Object = Nothing)
 
-        Dim gas_stream As MaterialStream = GetInletMaterialStream(0)
+        Dim inlet1 As MaterialStream = GetInletMaterialStream(0)
 
-        Dim water_stream As MaterialStream = GetInletMaterialStream(1)
+        Dim inlet2 As MaterialStream = GetInletMaterialStream(1)
 
-        Dim outletstream = GetOutletMaterialStream(0)
+        Dim outlet1 = GetOutletMaterialStream(0)
 
-        Dim energystream As EnergyStream = GetOutletEnergyStream(1)
+        Dim outlet2 = GetOutletMaterialStream(1)
 
-
-
-        If gas_stream Is Nothing Then
-            Throw New Exception("No stream connected to inlet gas port")
+        If inlet1 Is Nothing Then
+            Throw New Exception("No stream connected to inlet port 1")
         End If
 
-        If water_stream Is Nothing Then
-            Throw New Exception("No stream connected to inlet water port")
+        If inlet2 Is Nothing Then
+            Throw New Exception("No stream connected to inlet port 2")
         End If
 
-        If outletstream Is Nothing Then
-            Throw New Exception("No stream connected to outlet gas port")
+        If outlet1 Is Nothing Then
+            Throw New Exception("No stream connected to outlet port 1")
         End If
 
-        If energystream Is Nothing Then
-            Throw New Exception("No stream connected to outlet energy port")
+        If outlet2 Is Nothing Then
+            Throw New Exception("No stream connected to outlet port 1")
         End If
 
-        'check if water stream is really made of liquid water only.
+        Dim T1 = inlet1.GetTemperature()
+        Dim Comp1 = inlet1.GetOverallComposition()
+        Dim P1 = inlet1.GetPressure()
 
-        If Not water_stream.GetPhase("Overall").Compounds.Keys.Contains("Water") Then
-            Throw New Exception("This Unit Operation needs Water in the list of added compounds.")
-        End If
+        outlet1.SetTemperature(T1 * 1.2)
+        outlet1.SetPressure(P1 * 2.0)
+        outlet1.SetOverallComposition(Comp1)
 
-        'get water compound amount in liquid phase.
+        Dim T2 = inlet2.GetTemperature()
+        Dim Comp2 = inlet2.GetOverallComposition()
+        Dim P2 = inlet2.GetPressure()
 
-        Dim liquidphase_water = water_stream.GetPhase("Liquid1")
-
-        Dim water = liquidphase_water.Compounds("Water")
-
-        If liquidphase_water.Properties.molarfraction < 0.9999 And water.MoleFraction < 0.9999 Then
-            Throw New Exception("The inlet water stream must be 100% liquid water.")
-        End If
-
-        Dim mixedstream As MaterialStream = gas_stream.Clone()
-
-        mixedstream = mixedstream.Add(water_stream.Clone())
-
-        Dim Pgas = gas_stream.GetPressure() 'Pa
-        Dim Pwater = water_stream.GetPressure() 'Pa
-
-        'set outlet stream pressure as (Pg + Pw)/2
-
-        mixedstream.SetPressure((Pgas + Pwater) / 2)
-
-        Dim Hg = gas_stream.GetMassEnthalpy() 'kJ/kg
-        Dim Hw = water_stream.GetMassEnthalpy() 'kJ/kg
-
-        Dim Wg = gas_stream.GetMassFlow() 'kg/s
-        Dim Ww = water_stream.GetMassFlow() 'kg/s
-
-        'isothermic mode means outlet temperature = gas temperature
-
-        Dim Tg = gas_stream.GetTemperature() 'K
-
-        mixedstream.SetTemperature(Tg)
-        mixedstream.SetFlashSpec("PT") 'Pressure/Temperature
-
-        'calculate the stream to get its enthalpy and close the energy balance.
-
-        Me.PropertyPackage.CurrentMaterialStream = mixedstream
-        mixedstream.Calculate()
-
-        Dim Wo = mixedstream.GetMassFlow() 'kg/s
-        Dim Ho = mixedstream.GetMassEnthalpy() 'kJ/kg
-
-        Dim Eb = (Wg * Hg + Ww * Hw) - Wo * Ho 'kJ/s = KW
-
-        energystream.EnergyFlow = Eb 'kW
-
-        'copy the properties from mixedstream
-
-        outletstream.Assign(mixedstream)
+        outlet2.SetTemperature(T2 * 1.2)
+        outlet2.SetPressure(P2 * 1.2)
+        outlet2.SetOverallComposition(Comp2)
 
     End Sub
 
@@ -244,8 +203,8 @@ Public Class MyUnitOperation
 
             port1.IsEnergyConnector = False
             port1.Type = Interfaces.Enums.GraphicObjects.ConType.ConIn
-            port1.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height / 3)
-            port1.ConnectorName = "Gas Stream Inlet Port"
+            port1.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y)
+            port1.ConnectorName = "Inlet Port 1"
 
             GraphicObject.InputConnectors.Add(port1)
 
@@ -253,16 +212,16 @@ Public Class MyUnitOperation
 
             port2.IsEnergyConnector = False
             port2.Type = Interfaces.Enums.GraphicObjects.ConType.ConIn
-            port2.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height * 2 / 3)
-            port2.ConnectorName = "Water Stream Inlet Port"
+            port2.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height)
+            port2.ConnectorName = "Inlet Port 2"
 
             GraphicObject.InputConnectors.Add(port2)
 
         Else
 
-            GraphicObject.InputConnectors(0).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height / 3)
+            GraphicObject.InputConnectors(0).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y)
 
-            GraphicObject.InputConnectors(1).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height * 2 / 3)
+            GraphicObject.InputConnectors(1).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X, GraphicObject.Y + GraphicObject.Height)
 
         End If
 
@@ -272,23 +231,24 @@ Public Class MyUnitOperation
 
             port3.IsEnergyConnector = False
             port3.Type = Interfaces.Enums.GraphicObjects.ConType.ConOut
-            port3.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y + GraphicObject.Height / 2)
-            port3.ConnectorName = "Mixed Stream Outlet Port"
+            port3.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y)
+            port3.ConnectorName = "Outlet Port 1"
 
             GraphicObject.OutputConnectors.Add(port3)
 
             Dim port4 As New Drawing.SkiaSharp.GraphicObjects.ConnectionPoint()
-            port4.IsEnergyConnector = True
-            port4.Type = Interfaces.Enums.GraphicObjects.ConType.ConEn
-            port4.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width / 2, GraphicObject.Y + GraphicObject.Height)
-            port4.ConnectorName = "Energy Stream Outlet Port"
+
+            port4.IsEnergyConnector = False
+            port4.Type = Interfaces.Enums.GraphicObjects.ConType.ConOut
+            port4.Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y + GraphicObject.Height)
+            port4.ConnectorName = "Outlet Port 2"
 
             GraphicObject.OutputConnectors.Add(port4)
 
         Else
 
-            GraphicObject.OutputConnectors(0).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y + GraphicObject.Height / 2)
-            GraphicObject.OutputConnectors(1).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width / 2, GraphicObject.Y + GraphicObject.Height)
+            GraphicObject.OutputConnectors(0).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y)
+            GraphicObject.OutputConnectors(1).Position = New DWSIM.DrawingTools.Point.Point(GraphicObject.X + GraphicObject.Width, GraphicObject.Y + GraphicObject.Height)
 
         End If
 
