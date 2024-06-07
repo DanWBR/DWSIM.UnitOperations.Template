@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
-Imports DWSIM.Interfaces
 Imports DWSIM.ExtensionMethods
+Imports DWSIM
+Imports DWSIM.UnitOperations
 
 Public Class Editor
 

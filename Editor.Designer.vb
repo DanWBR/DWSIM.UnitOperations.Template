@@ -93,7 +93,7 @@ Partial Class Editor
         '
         Me.chkActive.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkActive.Appearance = System.Windows.Forms.Appearance.Button
-        Me.chkActive.BackgroundImage = Global.DWSIM.UnitOperations.MyUnitOperation.My.Resources.Resources.bullet_tick
+        Me.chkActive.BackgroundImage = My.Resources.Resources.bullet_tick
         Me.chkActive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.chkActive.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.chkActive.Location = New System.Drawing.Point(355, 48)
@@ -248,7 +248,7 @@ Partial Class Editor
         'btnConfigurePP
         '
         Me.btnConfigurePP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfigurePP.BackgroundImage = Global.DWSIM.UnitOperations.MyUnitOperation.My.Resources.Resources.cog
+        Me.btnConfigurePP.BackgroundImage = My.Resources.Resources.cog
         Me.btnConfigurePP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnConfigurePP.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.btnConfigurePP.Location = New System.Drawing.Point(355, 29)

@@ -4,6 +4,8 @@ Imports System.Windows.Forms
 Imports DWSIM.Thermodynamics.Streams
 Imports DWSIM.UnitOperations.Streams
 Imports XFlowsheet.Implementation.DefaultImplementations
+Imports DWSIM
+Imports DWSIM.UnitOperations
 
 Public Class MyUnitOperation
 

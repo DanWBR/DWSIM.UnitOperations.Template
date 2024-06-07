@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{91FE007E-83E6-4CB3-ADA8-DC015DA93B8B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DWSIM.UnitOperations.MyUnitOperation</RootNamespace>
-    <AssemblyName>DWSIM.UnitOperations.MyUnitOperation</AssemblyName>
+    <RootNamespace>MyUnitOperation</RootNamespace>
+    <AssemblyName>MyUnitOperation</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -18,8 +18,8 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\dwsim\DWSIM\bin\x64\Debug\unitops\</OutputPath>
-    <DocumentationFile>DWSIM.UnitOperations.MyUnitOperation.xml</DocumentationFile>
+    <OutputPath>..\..\..\AppData\Local\DWSIM\unitops\</OutputPath>
+    <DocumentationFile>MyUnitOperation.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>DWSIM.UnitOperations.MyUnitOperation.xml</DocumentationFile>
+    <DocumentationFile>MyUnitOperation.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,79 +45,79 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CapeOpen">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\CapeOpen.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\CapeOpen.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.Drawing.SkiaSharp">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.Drawing.SkiaSharp.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.Drawing.SkiaSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.DrawingTools.Point">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.DrawingTools.Point.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.DrawingTools.Point.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.ExtensionMethods">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.ExtensionMethods.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.ExtensionMethods.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.ExtensionMethods.Eto">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.ExtensionMethods.Eto.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.ExtensionMethods.Eto.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.GlobalSettings">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.GlobalSettings.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.GlobalSettings.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.Interfaces">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.Interfaces.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.Interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.SharedClasses">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.SharedClasses.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.SharedClasses.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.SharedClassesCSharp">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.SharedClassesCSharp.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.SharedClassesCSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.Thermodynamics">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.Thermodynamics.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.Thermodynamics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.UnitOperations">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.UnitOperations.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.UnitOperations.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DWSIM.XMLSerializer">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\DWSIM.XMLSerializer.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\DWSIM.XMLSerializer.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eto">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\Eto.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\Eto.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RichTextBoxExtended">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\RichTextBoxExtended.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\RichTextBoxExtended.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SkiaSharp">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\SkiaSharp.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\SkiaSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SkiaSharp.Extended">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\SkiaSharp.Extended.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\SkiaSharp.Extended.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SkiaSharp.Views.Desktop.Common">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\SkiaSharp.Views.Desktop.Common.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\SkiaSharp.Views.Desktop.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SkiaSharp.Views.WindowsForms">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\SkiaSharp.Views.WindowsForms.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\SkiaSharp.Views.WindowsForms.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -130,11 +130,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="XFlowsheet">
-      <HintPath>..\dwsim\DWSIM\bin\x64\Debug\XFlowsheet.dll</HintPath>
+      <HintPath>C:\Users\danie\AppData\Local\DWSIM\XFlowsheet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
