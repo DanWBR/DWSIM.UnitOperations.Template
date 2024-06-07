@@ -361,8 +361,6 @@ Public Class MyUnitOperation
 
         'using extension methods from DWSIM.ExtensionMethods.Eto (DWISM.UI.Shared namespace)
 
-        Dim propertiespanel = DirectCast(container, Eto.Forms.DynamicLayout)
-
     End Sub
 
 #End Region
